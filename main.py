@@ -47,7 +47,7 @@ def root():
 
 
 # 2. Реализован путь /post – 1 балла
-@app.post("/post")
+@app.post("/post", summary='Get Post')
 def return_timestamp() -> Timestamp:
     latest_timestamp = post_db[-1]
     new_timestamp = Timestamp(latest_timestamp.id + 1, time.time())
@@ -56,7 +56,7 @@ def return_timestamp() -> Timestamp:
 
 
 # 3. Реализована запись собак – 1 балл
-@app.post("/dog")
+@app.post("/dog", summary='Create Dog')
 def create_dog(new_dog: Dog) -> Dog:
     if not all(new_dog.pk != dog.pk for dog in dogs_db.values()):
         raise HTTPException(
@@ -67,7 +67,7 @@ def create_dog(new_dog: Dog) -> Dog:
 
 
 # 4. Реализовано получение списка собак – 1 балл
-@app.get("/dog")
+@app.get("/dog", summary='Get Dogs')
 def get_dogs_list(kind: DogType = None):
     if kind:
         # 6. Реализовано получение собак по типу – 1 балл
@@ -77,7 +77,7 @@ def get_dogs_list(kind: DogType = None):
 
 
 # 5. Реализовано получение собаки по id – 1 балл
-@app.get("/dog/{pk}")
+@app.get("/dog/{pk}", summary='Get Dog by Pk')
 def get_dog_by_id(pk: int) -> Dog:
     required_dog = dogs_db.get(pk, None)
 
@@ -90,7 +90,7 @@ def get_dog_by_id(pk: int) -> Dog:
 
 
 # 7. Реализовано обновление собаки по id – 1 балл
-@app.patch("/dog/{pk}")
+@app.patch("/dog/{pk}", summary='Update Dog')
 def patch_dog(pk: int, dog: Dog) -> Dog:
     required_dog = dogs_db.get(pk, None)
     if required_dog:
