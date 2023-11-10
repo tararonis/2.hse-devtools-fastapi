@@ -22,4 +22,4 @@ milanakuchumova, mlenjoyer22 и Nikita777-coder
 Залесинский Роман
 
 ### Ссылка на хостинг
-
+https://hse-vet-clinic-fastapi-ht.onrender.com/
